@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<div class="text-center">
+<div class="car">
+<div class="btn-group" dropdown>
+  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    Select Cars <span class="caret"></span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem" *ngFor="let data of car"><a class="dropdown-item" (click)="openModal(template,data._id)">{{data.name}}</a></li>
+  </ul>
+</div>
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+ 
+<template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left"><strong>Brand</strong>:- <i>{{carmodels[0].car.name}}</i></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let data of carmodels" class="carmodels">
+       <span><strong>Model</strong>:- {{data.name}}</span>&nbsp;&nbsp;
+       <span><img src="{{data.imageUrl}}" class="img"></span>
+    </div>
+  </div>
+</template>
+</div>
+
+
+ </div>
