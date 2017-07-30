@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Rx";
-import {car,carmodels} from './app';
+import {insurance,insuranceOnLocation} from './app';
 
 
 @Injectable()
@@ -11,15 +11,15 @@ export class appService {
   constructor(private http: Http) { }
 
 
-   getcarData():Observable<car[]> {
-        return this.http.get('http://localhost:3000/cars')
+   getinsuranceData():Observable<insurance[]> {
+        return this.http.get('http://localhost:3000/insurance')
             .map(this.extractUserData)
             .catch(this.handleError);
     }
 
 
-    getCarModelsData(carId):Observable<carmodels[]> {
-        return this.http.get('http://localhost:3000/carmodels/'+carId)
+    getinsuranceOnLocationData(zipCode):Observable<insuranceOnLocation[]> {
+        return this.http.get('http://localhost:3000/insuranceOnloaction/'+zipCode)
             .map(this.extractFollowerData)
             .catch(this.handleError);
     }

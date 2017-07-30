@@ -1,12 +1,13 @@
-export interface car {
+export interface insurance {
     _id:string;
     name:string;
+    imageUrl:string;
     createdAt:string;
 }
 
-export interface carmodels {
+export interface insuranceOnLocation {
     _id:string;
-    name:string;
-    car:any
+    zipCode:string;
+    insurance:any
     createdAt:string;
 }

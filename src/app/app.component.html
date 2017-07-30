@@ -1,29 +1,56 @@
 <div class="text-center">
 <div class="car">
-<div class="btn-group" dropdown>
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-    Select Cars <span class="caret"></span>
+
+<div class="btn-group" [hidden]="flag > 0">
+Start The Game <br><br>
+  <button  type="button" class="btn btn-primary" (click)="onStart()">
+    Click Here To Start The Game
   </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
-    <li role="menuitem" *ngFor="let data of car"><a class="dropdown-item" (click)="openModal(template,data._id)">{{data.name}}</a></li>
-  </ul>
 </div>
 <!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
- 
-<template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left"><strong>Brand</strong>:- <i>{{carmodels[0].car.name}}</i></h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+ <div class="btn-group" *ngIf="flag == 1">
+ Tell us a little about Yourself ? <br>
+  <textarea name="description" id="description" [(ngModel)]='description'></textarea>
+</div>
+<div class="btn-group" *ngIf="flag == 2">
+  What types of insurance do you already have?
+  <div *ngFor="let data of insurance">
+  <img src="{{data.imageUrl}}" class="img">
+    <input type="checkbox" name="data" id="data" (change)="onChecked(data)">{{data.name}}
+</div>
+</div>
+<div class="btn-group" *ngIf="flag == 3">
+<span>
+  Enter your Zip Code...............?
+    <input type="text" name="zipCode" id="zipCode" [(ngModel)]='zipCode'>
+    <button  type="button" class="btn btn-primary" (click)="OnFindByZipCode()">
+    Search
+  </button>
+</span><br><br><br>
+  <div *ngIf="insuranceOnLocation.length >0">
+  These Are the Insurance we Have in Your Area?
+    <div *ngFor="let data of insuranceOnLocation">
+  <img src="{{data.insurance.imageUrl}}" class="img">
+    <input type="checkbox" name="data" id="data" (change)="onSelectedChecked(data)">{{data.insurance.name}}
+</div>
   </div>
-  <div class="modal-body">
-    <div *ngFor="let data of carmodels" class="carmodels">
-       <span><strong>Model</strong>:- {{data.name}}</span>&nbsp;&nbsp;
-       <span><img src="{{data.imageUrl}}" class="img"></span>
-    </div>
-  </div>
-</template>
+</div>
+<div class="btn-group" *ngIf="flag == 4">
+<span>
+  Complete profile and sign up
+</span>
+<span>
+  Save information and come back at a later time
+</span>
+<span>
+  >Continue playing the game
+</span>
+</div>
+  <div class="btn-group" [hidden]="flag == 0">
+  <button  type="button"  class="btn btn-primary" (click)="onNext()">
+    Next
+  </button>
+</div>
 </div>
 
 
